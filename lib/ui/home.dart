@@ -65,12 +65,10 @@ class _HomeState extends State<Home> {
                             vertical: 14.0, horizontal: 0),
                         child: ListTile(
                           title: Text(data[index]["name"]),
-                          subtitle: Flexible(
-                            child: Text(
-                              "price : RM${data[index]["price"]}",
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
+                          subtitle: Text(
+                            "price : RM${data[index]["price"]}",
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                           ),
                           trailing: SizedBox(
                             width: 90,
@@ -120,12 +118,14 @@ class _HomeState extends State<Home> {
                             ),
                             onPressed: () {
                               Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => UpdateForm(
-                                            id: data[index].id,
-                                            data: data[index],
-                                          )));
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => UpdateForm(
+                                    id: data[index].id,
+                                    data: data[index],
+                                  ),
+                                ),
+                              );
                             },
                           ),
                         ),
