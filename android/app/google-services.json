@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "465962407180",
+    "project_id": "flutterfire-coedev",
+    "storage_bucket": "flutterfire-coedev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:465962407180:android:a5dc2d014854dd40526529",
+        "android_client_info": {
+          "package_name": "com.example.firebase_coedev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "465962407180-nd1epq8ga0ki46jemlmii4t4d23fh8c3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.firebase_coedev",
+            "certificate_hash": "479e1c6ae3be2fefb13163b06406ac0dd621a8c0"
+          }
+        },
+        {
+          "client_id": "465962407180-luo8bkktd8s01s84i7q54k8dk75l149b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsMjwbG8VjU-ERiHGm8hAlSNj6tkYwZYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "465962407180-luo8bkktd8s01s84i7q54k8dk75l149b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
