@@ -65,13 +65,24 @@ class _HomeState extends State<Home> {
                             vertical: 14.0, horizontal: 0),
                         child: ListTile(
                           title: Text(data[index]["name"]),
-                          subtitle: Text("price : RM${data[index]["price"]}"),
+                          subtitle: Flexible(
+                            child: Text(
+                              "price : RM${data[index]["price"]}",
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
                           trailing: SizedBox(
                             width: 90,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text(data[index]["stock"]),
+                                Flexible(
+                                    child: Text(
+                                  data[index]["stock"],
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                )),
                                 IconButton(
                                   onPressed: () {
                                     alert.myAlertDialog(
