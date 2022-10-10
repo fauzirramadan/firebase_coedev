@@ -8,9 +8,6 @@ class UpdateData {
   TextEditingController priceC = TextEditingController();
   TextEditingController stockC = TextEditingController();
 
-  // snackbar
-  MySnackbar snackbar = MySnackbar();
-
   // firestore instance
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
@@ -25,12 +22,12 @@ class UpdateData {
       Navigator.pop(context);
       // show snackbar
       ScaffoldMessenger.of(context)
-          .showSnackBar(snackbar.mySnackbar("food updated", Colors.green));
+          .showSnackBar(mySnackbar("food updated", Colors.green));
     }).catchError((error) {
       log("failed when update food : $error");
       // shpw snackbar
       ScaffoldMessenger.of(context).showSnackBar(
-        snackbar.mySnackbar("failed updating food", Colors.red),
+        mySnackbar("failed updating food", Colors.red),
       );
     });
   }

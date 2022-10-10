@@ -11,9 +11,6 @@ import 'package:flutter/material.dart';
 import '../ui/home.dart';
 
 class Auth {
-  // snackbar class
-  MySnackbar snackbar = MySnackbar();
-
   // alert class
   MyAlertDialog alert = MyAlertDialog();
 
@@ -39,8 +36,8 @@ class Auth {
         TextButton(
           onPressed: () {
             // show snackbar
-            ScaffoldMessenger.of(context).showSnackBar(
-                snackbar.mySnackbar("Register Success", Colors.green));
+            ScaffoldMessenger.of(context)
+                .showSnackBar(mySnackbar("Register Success", Colors.green));
             // go to login
             Navigator.pushAndRemoveUntil(
                 context,
@@ -56,18 +53,17 @@ class Auth {
       if (e.code == 'weak-password') {
         log('The password provided is too weak.');
         // show snackbar
-        ScaffoldMessenger.of(context).showSnackBar(snackbar.mySnackbar(
-            "The password provided is too weak", Colors.red));
+        ScaffoldMessenger.of(context).showSnackBar(
+            mySnackbar("The password provided is too weak", Colors.red));
       } else if (e.code == 'email-already-in-use') {
         log('The account already exists for that email.');
         // show snackbar
-        ScaffoldMessenger.of(context).showSnackBar(snackbar.mySnackbar(
+        ScaffoldMessenger.of(context).showSnackBar(mySnackbar(
             "The account already exists for that email", Colors.red));
       }
     } catch (e) {
       log(e.toString());
-      ScaffoldMessenger.of(context)
-          .showSnackBar(snackbar.mySnackbar("$e", Colors.red));
+      ScaffoldMessenger.of(context).showSnackBar(mySnackbar("$e", Colors.red));
     }
   }
 
@@ -79,7 +75,7 @@ class Auth {
       if (myUser.user!.emailVerified) {
         // show snackbar
         ScaffoldMessenger.of(context)
-            .showSnackBar(snackbar.mySnackbar("Login Success", Colors.green));
+            .showSnackBar(mySnackbar("Login Success", Colors.green));
         // go to home
         Navigator.pushAndRemoveUntil(context,
             MaterialPageRoute(builder: (_) => const Home()), (route) => false);
@@ -94,9 +90,8 @@ class Auth {
                   // back
                   Navigator.pop(context);
                   // show snackbar
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      snackbar.mySnackbar(
-                          "Email verification has been send", Colors.green));
+                  ScaffoldMessenger.of(context).showSnackBar(mySnackbar(
+                      "Email verification has been send", Colors.green));
                 },
                 child: const Text("Resend email verification")));
       }
@@ -107,16 +102,16 @@ class Auth {
         log('No user found for that email.');
         // show snackbar
         ScaffoldMessenger.of(context).showSnackBar(
-            snackbar.mySnackbar("No user found for that email", Colors.red));
+            mySnackbar("No user found for that email", Colors.red));
       } else if (e.code == 'wrong-password') {
         log('Wrong password provided for that user.');
         // show snackbar
-        ScaffoldMessenger.of(context).showSnackBar(snackbar.mySnackbar(
-            "Wrong password provided for that user", Colors.red));
+        ScaffoldMessenger.of(context).showSnackBar(
+            mySnackbar("Wrong password provided for that user", Colors.red));
       } else {
         // show snackbar
         ScaffoldMessenger.of(context)
-            .showSnackBar(snackbar.mySnackbar(e.toString(), Colors.red));
+            .showSnackBar(mySnackbar(e.toString(), Colors.red));
       }
     }
   }
@@ -134,7 +129,7 @@ class Auth {
   // reset password
   void resetPassword(String email, BuildContext context) async {
     await auth.sendPasswordResetEmail(email: email);
-    ScaffoldMessenger.of(context).showSnackBar(snackbar.mySnackbar(
+    ScaffoldMessenger.of(context).showSnackBar(mySnackbar(
         "Reset password email has been send to $email", Colors.green));
   }
 }

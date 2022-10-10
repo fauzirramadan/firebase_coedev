@@ -15,9 +15,6 @@ class AddDataController {
     stockC.dispose();
   }
 
-  // my snackbar
-  MySnackbar snackbar = MySnackbar();
-
   // firestore instance
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
@@ -37,12 +34,12 @@ class AddDataController {
       Navigator.pop(context);
       // show snackbar
       ScaffoldMessenger.of(context)
-          .showSnackBar(snackbar.mySnackbar("Food Added", Colors.green));
+          .showSnackBar(mySnackbar("Food Added", Colors.green));
     }).catchError((error) {
       log("Failed to add food: $error");
       // show snackbar
       ScaffoldMessenger.of(context)
-          .showSnackBar(snackbar.mySnackbar("$error", Colors.red));
+          .showSnackBar(mySnackbar("$error", Colors.red));
     });
   }
 }

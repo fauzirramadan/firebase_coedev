@@ -8,9 +8,6 @@ class GetDataController {
   // firestore instance
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  // snackbar
-  MySnackbar snackbar = MySnackbar();
-
   // get data function
   Stream<QuerySnapshot<Object?>> getData() {
     CollectionReference dataFood = firestore.collection("food");
@@ -24,12 +21,12 @@ class GetDataController {
       log("food deleted");
       // show snackbar
       ScaffoldMessenger.of(context)
-          .showSnackBar(snackbar.mySnackbar("Food deleted", Colors.green));
+          .showSnackBar(mySnackbar("Food deleted", Colors.green));
     }).catchError((error) {
       log("Failed to delete food: $error");
       // show snackbar
       ScaffoldMessenger.of(context).showSnackBar(
-          snackbar.mySnackbar("Failed to delete food: $error", Colors.red));
+          mySnackbar("Failed to delete food: $error", Colors.red));
     });
   }
 }

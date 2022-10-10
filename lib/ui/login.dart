@@ -26,9 +26,6 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  // snackbar
-  MySnackbar snackbar = MySnackbar();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,8 +123,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 GestureDetector(
                   onTap: () {
                     if (email.text.isEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(snackbar
-                          .mySnackbar("Please fill your email", Colors.red));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          mySnackbar("Please fill your email", Colors.red));
                     }
                     auth.resetPassword(email.text, context);
                   },
