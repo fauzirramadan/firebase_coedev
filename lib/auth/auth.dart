@@ -28,7 +28,7 @@ class Auth {
         password: password,
       );
       // send email verification
-      await myUser.user?.sendEmailVerification();
+      await myUser.user!.sendEmailVerification();
       // show alert dialog
       alert.myAlertDialog(
         context,
@@ -93,7 +93,10 @@ class Auth {
                   ScaffoldMessenger.of(context).showSnackBar(mySnackbar(
                       "Email verification has been send", Colors.green));
                 },
-                child: const Text("Resend email verification")));
+                child: const Text(
+                  "Resend email verification",
+                  style: TextStyle(color: Colors.black),
+                )));
       }
 
       // catch an error

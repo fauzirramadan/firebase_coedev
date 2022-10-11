@@ -84,24 +84,20 @@ class _HomeState extends State<Home> {
                                 IconButton(
                                   onPressed: () {
                                     alert.myAlertDialog(
-                                        context,
-                                        "Are you sure to delete this data?",
-                                        TextButton(
-                                          onPressed: () {
-                                            controller.deleteFood(
-                                                data[index].id, context);
-                                            Navigator.pop(context);
-                                          },
-                                          child: const Text(
-                                            "DELETE",
-                                            style: TextStyle(color: Colors.red),
-                                          ),
+                                      context,
+                                      "Are you sure to delete this data?",
+                                      TextButton(
+                                        onPressed: () {
+                                          controller.deleteFood(
+                                              data[index].id, context);
+                                          Navigator.pop(context);
+                                        },
+                                        child: const Text(
+                                          "DELETE",
+                                          style: TextStyle(color: Colors.red),
                                         ),
-                                        cancelButton: TextButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            child: const Text("NO")));
+                                      ),
+                                    );
                                   },
                                   icon: const Icon(
                                     Icons.delete,
