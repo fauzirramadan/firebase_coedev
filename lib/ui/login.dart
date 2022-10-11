@@ -14,6 +14,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   // calll auth class
   Auth auth = Auth();
+  bool isLoading = false;
 
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
@@ -24,6 +25,13 @@ class _LoginScreenState extends State<LoginScreen> {
     email.dispose();
     password.dispose();
     super.dispose();
+  }
+
+  void login() {
+    setState(() {
+      isLoading = true;
+    });
+    auth.loginUser(email.text, password.text, context);
   }
 
   @override
@@ -101,22 +109,29 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                MaterialButton(
-                  onPressed: () {
-                    if (keyForm.currentState!.validate()) {
-                      auth.loginUser(email.text, password.text, context);
-                    }
-                  },
-                  minWidth: double.infinity,
-                  height: 55,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                  color: Colors.yellow,
-                  child: const Text(
-                    "SIGN IN",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
+                isLoading
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : MaterialButton(
+                        onPressed: () {
+                          if (keyForm.currentState!.validate()) {
+                            login();
+                            setState(() {
+                              isLoading = false;
+                            });
+                          }
+                        },
+                        minWidth: double.infinity,
+                        height: 55,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
+                        color: Colors.yellow,
+                        child: const Text(
+                          "SIGN IN",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ),
                 const SizedBox(
                   height: 15,
                 ),
