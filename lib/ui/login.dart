@@ -2,6 +2,7 @@ import 'package:firebase_coedev/auth/auth.dart';
 import 'package:firebase_coedev/ui/home.dart';
 import 'package:firebase_coedev/ui/register.dart';
 import 'package:firebase_coedev/utils/my_snackbar.dart';
+import 'package:firebase_coedev/utils/navigator_helper.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -163,10 +164,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 15,
                 ),
                 GestureDetector(
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => const RegisterScreen())),
+                  onTap: () => navigatePush(context, const RegisterScreen()),
                   child: const Center(
                     child: Text(
                       "Dont have any account? sign up here",

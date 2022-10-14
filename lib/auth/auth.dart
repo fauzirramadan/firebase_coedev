@@ -9,6 +9,7 @@ import 'package:firebase_coedev/utils/my_snackbar.dart';
 import 'package:flutter/material.dart';
 
 import '../ui/home.dart';
+import '../utils/navigator_helper.dart';
 
 class Auth {
   // alert class
@@ -40,10 +41,7 @@ class Auth {
             ScaffoldMessenger.of(context)
                 .showSnackBar(mySnackbar("Register Success", Colors.green));
             // go to login
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (_) => const LoginScreen()),
-                (route) => false);
+            navigateRemoveUntil(context, const LoginScreen());
           },
           child: const Text("Ok, I'll check it"),
         ),
@@ -79,8 +77,7 @@ class Auth {
         ScaffoldMessenger.of(context)
             .showSnackBar(mySnackbar("Login Success", Colors.green));
         // go to home
-        Navigator.pushAndRemoveUntil(context,
-            MaterialPageRoute(builder: (_) => const Home()), (route) => false);
+        navigateRemoveUntil(context, const Home());
       } else {
         // show alert
         alert.myAlertDialog(
@@ -126,10 +123,7 @@ class Auth {
   Future<void> logoutUser(BuildContext context) async {
     await auth.signOut();
     // go to login screen
-    Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (_) => const LoginScreen()),
-        (route) => false);
+    navigateRemoveUntil(context, const LoginScreen());
   }
 
   // reset password

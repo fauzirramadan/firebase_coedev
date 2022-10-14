@@ -1,4 +1,5 @@
 import 'package:firebase_coedev/ui/login.dart';
+import 'package:firebase_coedev/utils/navigator_helper.dart';
 import 'package:flutter/material.dart';
 
 import '../auth/auth.dart';
@@ -142,10 +143,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   height: 15,
                 ),
                 GestureDetector(
-                  onTap: () => Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (_) => const LoginScreen()),
-                      (route) => false),
+                  onTap: () =>
+                      navigateRemoveUntil(context, const LoginScreen()),
                   child: const Center(
                     child: Text(
                       "Already have an account? login here",
