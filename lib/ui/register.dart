@@ -112,7 +112,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 MaterialButton(
                   onPressed: () {
-                    if (keyForm.currentState!.validate()) {
+                    bool isValid = keyForm.currentState!.validate();
+                    if (isValid) {
                       signup();
                     }
                   },

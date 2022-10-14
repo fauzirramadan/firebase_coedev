@@ -40,6 +40,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool? isValid = keyForm.currentState?.validate();
+
     return Scaffold(
       backgroundColor: Colors.yellow[200],
       appBar: AppBar(
@@ -115,7 +117,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 MaterialButton(
                   onPressed: () {
-                    if (keyForm.currentState!.validate()) {
+                    bool isValid = keyForm.currentState!.validate();
+                    if (isValid) {
                       login();
                     }
                   },

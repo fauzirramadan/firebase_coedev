@@ -101,7 +101,8 @@ class _AddFormState extends State<AddForm> {
                             borderRadius: BorderRadius.circular(12)),
                         minWidth: double.infinity,
                         onPressed: () {
-                          if (keyForm.currentState!.validate()) {
+                          bool isValid = keyForm.currentState!.validate();
+                          if (isValid) {
                             controller.addDataFood(
                                 controller.foodNameC.text,
                                 controller.priceC.text,
