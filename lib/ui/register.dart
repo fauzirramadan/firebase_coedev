@@ -13,6 +13,7 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   // calll auth class
   Auth auth = Auth();
+  bool isLoading = false;
 
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
@@ -23,6 +24,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
     email.dispose();
     password.dispose();
     super.dispose();
+  }
+
+  Future<void> signup() async {
+    setState(() {
+      isLoading = true;
+    });
+    await auth.registerUser(email.text, password.text, context);
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
@@ -101,7 +112,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 MaterialButton(
                   onPressed: () {
                     if (keyForm.currentState!.validate()) {
-                      auth.registerUser(email.text, password.text, context);
+                      signup();
                     }
                   },
                   minWidth: double.infinity,
@@ -109,9 +120,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30)),
                   color: Colors.yellow,
-                  child: const Text(
-                    "REGISTER",
-                    style: TextStyle(color: Colors.black),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      isLoading
+                          ? const CircularProgressIndicator(
+                              color: Colors.black,
+                            )
+                          : const SizedBox(),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      const Text(
+                        "SIGN UP",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(

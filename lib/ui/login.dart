@@ -27,11 +27,14 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  void login() {
+  void login() async {
     setState(() {
       isLoading = true;
     });
-    auth.loginUser(email.text, password.text, context);
+    await auth.loginUser(email.text, password.text, context);
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
@@ -109,29 +112,35 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                isLoading
-                    ? const Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : MaterialButton(
-                        onPressed: () {
-                          if (keyForm.currentState!.validate()) {
-                            login();
-                            setState(() {
-                              isLoading = false;
-                            });
-                          }
-                        },
-                        minWidth: double.infinity,
-                        height: 55,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30)),
-                        color: Colors.yellow,
-                        child: const Text(
-                          "SIGN IN",
-                          style: TextStyle(color: Colors.black),
-                        ),
+                MaterialButton(
+                  onPressed: () {
+                    if (keyForm.currentState!.validate()) {
+                      login();
+                    }
+                  },
+                  minWidth: double.infinity,
+                  height: 55,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30)),
+                  color: Colors.yellow,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      isLoading
+                          ? const CircularProgressIndicator(
+                              color: Colors.black,
+                            )
+                          : const SizedBox(),
+                      const SizedBox(
+                        width: 5,
                       ),
+                      const Text(
+                        "SIGN IN",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ],
+                  ),
+                ),
                 const SizedBox(
                   height: 15,
                 ),

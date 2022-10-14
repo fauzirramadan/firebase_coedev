@@ -21,7 +21,8 @@ class Auth {
   Stream<User?> get streamAuthStatus => auth.authStateChanges();
 
   // sign up/ register function
-  void registerUser(String email, String password, BuildContext context) async {
+  Future<void> registerUser(
+      String email, String password, BuildContext context) async {
     try {
       UserCredential myUser = await auth.createUserWithEmailAndPassword(
         email: email,
@@ -60,15 +61,17 @@ class Auth {
         // show snackbar
         ScaffoldMessenger.of(context).showSnackBar(mySnackbar(
             "The account already exists for that email", Colors.red));
+      } else {
+        log(e.toString());
+        ScaffoldMessenger.of(context)
+            .showSnackBar(mySnackbar("$e", Colors.red));
       }
-    } catch (e) {
-      log(e.toString());
-      ScaffoldMessenger.of(context).showSnackBar(mySnackbar("$e", Colors.red));
     }
   }
 
   // login function
-  void loginUser(String email, String password, BuildContext context) async {
+  Future<void> loginUser(
+      String email, String password, BuildContext context) async {
     try {
       UserCredential myUser = await auth.signInWithEmailAndPassword(
           email: email, password: password);
