@@ -48,7 +48,6 @@ class Auth {
           child: const Text("Ok, I'll check it"),
         ),
       );
-
       // catch an error
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -85,23 +84,24 @@ class Auth {
       } else {
         // show alert
         alert.myAlertDialog(
-            context,
-            "Your email has not been verified, please check your mail box",
-            TextButton(
-                onPressed: () async {
-                  await myUser.user!.sendEmailVerification();
-                  // back
-                  Navigator.pop(context);
-                  // show snackbar
-                  ScaffoldMessenger.of(context).showSnackBar(mySnackbar(
-                      "Email verification has been send", Colors.green));
-                },
-                child: const Text(
-                  "Resend email verification",
-                  style: TextStyle(color: Colors.black),
-                )));
+          context,
+          "Your email has not been verified, please check your mail box",
+          TextButton(
+            onPressed: () async {
+              await myUser.user!.sendEmailVerification();
+              // back
+              Navigator.pop(context);
+              // show snackbar
+              ScaffoldMessenger.of(context).showSnackBar(
+                  mySnackbar("Email verification has been send", Colors.green));
+            },
+            child: const Text(
+              "Resend email verification",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
       }
-
       // catch an error
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -123,7 +123,7 @@ class Auth {
   }
 
   // logout function
-  void logoutUser(BuildContext context) async {
+  Future<void> logoutUser(BuildContext context) async {
     await auth.signOut();
     // go to login screen
     Navigator.pushAndRemoveUntil(
@@ -133,9 +133,14 @@ class Auth {
   }
 
   // reset password
-  void resetPassword(String email, BuildContext context) async {
-    await auth.sendPasswordResetEmail(email: email);
-    ScaffoldMessenger.of(context).showSnackBar(mySnackbar(
-        "Reset password email has been send to $email", Colors.green));
+  Future<void> resetPassword(String email, BuildContext context) async {
+    try {
+      await auth.sendPasswordResetEmail(email: email);
+      ScaffoldMessenger.of(context).showSnackBar(mySnackbar(
+          "Reset password email has been send to $email", Colors.green));
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(mySnackbar(e.toString(), Colors.red));
+    }
   }
 }

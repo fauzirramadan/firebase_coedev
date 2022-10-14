@@ -145,12 +145,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 15,
                 ),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async {
                     if (email.text.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
                           mySnackbar("Please fill your email", Colors.red));
                     }
-                    auth.resetPassword(email.text, context);
+                    await auth.resetPassword(email.text, context);
                   },
                   child: const Center(
                       child: Text(
