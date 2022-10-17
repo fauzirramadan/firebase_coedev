@@ -8,11 +8,11 @@ class Skeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(top: 10),
       height: height,
       width: width,
-      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.04),
+          color: Colors.black.withOpacity(0.6),
           borderRadius: BorderRadius.circular(16)),
     );
   }
@@ -28,16 +28,19 @@ class ShimmerLoading extends StatelessWidget {
       highlightColor: Colors.grey.withOpacity(0.2),
       child: const ListTile(
         leading: Skeleton(
-          width: 60,
-          height: 60,
+          width: 50,
+          height: 50,
         ),
         title: Skeleton(
           width: double.infinity,
-          height: 50,
+          height: 30,
         ),
-        subtitle: Skeleton(
-          width: 300,
-          height: 50,
+        subtitle: Align(
+          alignment: Alignment.centerLeft,
+          child: Skeleton(
+            width: 200,
+            height: 30,
+          ),
         ),
       ),
     );
