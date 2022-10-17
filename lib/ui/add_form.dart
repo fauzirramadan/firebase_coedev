@@ -61,6 +61,7 @@ class _AddFormState extends State<AddForm> {
                         height: 10,
                       ),
                       TextFormField(
+                        keyboardType: TextInputType.number,
                         controller: controller.priceC,
                         validator: (value) {
                           return controller.priceC.value.text.isEmpty
@@ -79,6 +80,7 @@ class _AddFormState extends State<AddForm> {
                         height: 10,
                       ),
                       TextFormField(
+                        keyboardType: TextInputType.number,
                         controller: controller.stockC,
                         validator: (value) {
                           return controller.stockC.value.text.isEmpty

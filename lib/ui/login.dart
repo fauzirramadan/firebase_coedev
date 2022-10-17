@@ -1,5 +1,4 @@
 import 'package:firebase_coedev/auth/auth.dart';
-import 'package:firebase_coedev/ui/home.dart';
 import 'package:firebase_coedev/ui/register.dart';
 import 'package:firebase_coedev/utils/my_snackbar.dart';
 import 'package:firebase_coedev/utils/navigator_helper.dart';
@@ -40,8 +39,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool? isValid = keyForm.currentState?.validate();
-
     return Scaffold(
       backgroundColor: Colors.yellow[200],
       appBar: AppBar(

@@ -4,6 +4,7 @@ import 'package:firebase_coedev/controller/get_data.dart';
 import 'package:firebase_coedev/ui/add_form.dart';
 import 'package:firebase_coedev/ui/update_form.dart';
 import 'package:firebase_coedev/utils/my_alert.dart';
+import 'package:firebase_coedev/utils/shimmer.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -43,9 +44,18 @@ class _HomeState extends State<Home> {
               );
             }
             if (snapshot.connectionState == ConnectionState.waiting) {
+              return ListView.separated(
+                  itemBuilder: (context, index) => const ShimmerLoading(),
+                  separatorBuilder: (context, index) => const SizedBox(
+                        height: 10,
+                      ),
+                  itemCount: 5);
+            }
+            if (snapshot.data!.size == 0) {
               return const Center(
-                child: CircularProgressIndicator(
-                  color: Colors.yellow,
+                child: Text(
+                  "NO DATA",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               );
             }

@@ -66,6 +66,7 @@ class _UpdateFormState extends State<UpdateForm> {
                       height: 10,
                     ),
                     TextFormField(
+                      keyboardType: TextInputType.number,
                       controller: controller.priceC,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
@@ -79,6 +80,7 @@ class _UpdateFormState extends State<UpdateForm> {
                       height: 10,
                     ),
                     TextFormField(
+                      keyboardType: TextInputType.number,
                       controller: controller.stockC,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
