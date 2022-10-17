@@ -49,7 +49,7 @@ class _HomeState extends State<Home> {
                   separatorBuilder: (context, index) => const SizedBox(
                         height: 10,
                       ),
-                  itemCount: 5);
+                  itemCount: 7);
             }
             if (snapshot.data!.size == 0) {
               return const Center(
